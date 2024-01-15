@@ -1,0 +1,16 @@
+.husky
+.github
+.idea
+.vscode
+build
+dist
+node_modules
+vite.config.ts
+.prettierrc.js
+.eslintrc.js
+gulpfile.js
+jsconfig.js
+tsconfig.json
+tsconfig.node.json
+env.d.ts
+tools
