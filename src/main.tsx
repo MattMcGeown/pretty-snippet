@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import { defaultTheme } from '@/theme/theme';
 
+import './globalStyles.css';
 import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

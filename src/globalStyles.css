@@ -1,0 +1,11 @@
+.ͼ4 .cm-content {
+  padding: 1em;
+}
+
+.cm-editor {
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+
+.ͼ1.cm-focused {
+  outline: unset;
+}
