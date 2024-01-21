@@ -1,13 +1,13 @@
 import type { FC } from 'react';
 import { Box, Checkbox, Flex, FormLabel } from '@chakra-ui/react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
-import { useDispatch, useSelector } from 'react-redux';
-import type { IEditorControlsProps } from './types';
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
 import { setBackgroundPadding, setLineNumbers } from '@/stores/reducers/editor';
 import { PSlider } from '@/components/ui/PSlider';
+
+import type { IEditorControlsProps } from './types';
 
 const MotionBox = motion(Box);
 

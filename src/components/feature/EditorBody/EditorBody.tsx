@@ -1,11 +1,12 @@
 import { useState, type FC } from 'react';
+import { useSelector } from 'react-redux';
 import ReactCodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
-
 import { Box } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import type { IEditorBodyProps } from './types';
+
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
+
+import type { IEditorBodyProps } from './types';
 
 const EditorBody: FC<IEditorBodyProps> = () => {
   const lineNumbers = useSelector(selectLineNumbers);
