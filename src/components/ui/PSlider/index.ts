@@ -1,0 +1,1 @@
+export { default as PSlider } from './PSlider';

@@ -7,12 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { IEditorControlsProps } from './types';
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
 import { setLineNumbers } from '@/stores/reducers/editor';
+import { PSlider } from '@/components/ui/PSlider';
 
 const MotionBox = motion(Box);
 
 const EditorControls: FC<IEditorControlsProps> = () => {
   const dispatch = useDispatch();
   const hasLineNumbers = useSelector(selectLineNumbers);
+
+  const handleBackgroundPaddingSlider = (value: number) => {
+    console.info(value);
+  };
 
   return (
     <Flex
@@ -22,6 +27,8 @@ const EditorControls: FC<IEditorControlsProps> = () => {
       borderWidth={1}
       borderStyle="solid"
       borderColor="rgba(255, 255, 255, 0.3)"
+      flexDir="column"
+      gap={8}
     >
       <Flex flexDir="column">
         <FormLabel htmlFor="lineNumbers">Line Numbers</FormLabel>
@@ -52,6 +59,18 @@ const EditorControls: FC<IEditorControlsProps> = () => {
           </Box>
         </Checkbox>
       </Flex>
+      <Box>
+        <FormLabel htmlFor="backgroundPaddingSlider">
+          Background Padding Size
+        </FormLabel>
+        <PSlider
+          name="backgroundPaddingSlider"
+          defaultValue={8}
+          min={0}
+          max={16}
+          onChangeCallback={(value) => handleBackgroundPaddingSlider(value)}
+        />
+      </Box>
     </Flex>
   );
 };
