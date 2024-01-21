@@ -111,7 +111,7 @@ const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
               bg="gray.600"
               _hover={{ bg: 'gray.500' }}
               fontSize="md"
-              onClick={onExportCallback}
+              onClick={() => onExportCallback('png')}
             >
               Image PNG
             </MenuItem>
@@ -120,7 +120,7 @@ const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
               bg="gray.600"
               _hover={{ bg: 'gray.500' }}
               fontSize="md"
-              onClick={onExportCallback}
+              onClick={() => onExportCallback('jpg')}
             >
               Image JPG
             </MenuItem>
@@ -129,7 +129,7 @@ const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
               bg="gray.600"
               _hover={{ bg: 'gray.500' }}
               fontSize="md"
-              onClick={onExportCallback}
+              onClick={() => onExportCallback('clipboard')}
             >
               Copy Image
             </MenuItem>
@@ -139,7 +139,7 @@ const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
               bg="gray.600"
               _hover={{ bg: 'gray.500' }}
               fontSize="md"
-              onClick={onExportCallback}
+              onClick={() => onExportCallback('imgur')}
             >
               Copy Imgur URL
             </MenuItem>
