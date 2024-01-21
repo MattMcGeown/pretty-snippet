@@ -1,7 +1,7 @@
 import { Box, Container, Heading } from '@chakra-ui/react';
 
-import { Editor } from '@/components/Editor';
-import { EditorControls } from '@/components/EditorControls';
+import { Editor } from '@/components/feature/Editor';
+import { EditorControls } from '@/components/feature/EditorControls';
 
 function App() {
   return (
