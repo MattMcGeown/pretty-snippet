@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import type { IEditorControlsProps } from './types';
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
-import { setLineNumbers } from '@/stores/reducers/editor';
+import { setBackgroundPadding, setLineNumbers } from '@/stores/reducers/editor';
 import { PSlider } from '@/components/ui/PSlider';
 
 const MotionBox = motion(Box);
@@ -16,7 +16,7 @@ const EditorControls: FC<IEditorControlsProps> = () => {
   const hasLineNumbers = useSelector(selectLineNumbers);
 
   const handleBackgroundPaddingSlider = (value: number) => {
-    console.info(value);
+    dispatch(setBackgroundPadding(value));
   };
 
   return (
