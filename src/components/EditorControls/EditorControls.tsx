@@ -11,7 +11,15 @@ const EditorControls: FC<IEditorControlsProps> = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <Flex mt={10}>
+    <Flex
+      mt={10}
+      bg="#282c34"
+      p={8}
+      borderRadius="xl"
+      borderWidth={1}
+      borderStyle="solid"
+      borderColor="rgba(255, 255, 255, 0.3)"
+    >
       <Flex flexDir="column">
         <FormLabel htmlFor="lineNumbers">Line Numbers</FormLabel>
         <Checkbox
