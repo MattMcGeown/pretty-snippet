@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
 
 import { breakpoints, fontSizes, styles } from './baseStyles';
-import { Text } from './components';
+import { Text, Checkbox } from './components';
 
 export const defaultTheme = extendTheme({
   breakpoints,
@@ -9,5 +9,6 @@ export const defaultTheme = extendTheme({
   styles,
   components: {
     Text,
+    Checkbox,
   },
 });
