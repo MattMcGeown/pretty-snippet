@@ -1,1 +1,3 @@
-export interface IEditorControlsProps {}
+export interface IEditorControlsProps {
+  onExportCallback: () => void;
+}

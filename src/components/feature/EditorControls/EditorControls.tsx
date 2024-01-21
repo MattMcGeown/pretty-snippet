@@ -1,7 +1,25 @@
 import type { FC } from 'react';
-import { Box, Button, Checkbox, Flex, FormLabel, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormLabel,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Text,
+} from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import {
+  ChevronUpIcon,
+  CopyIcon,
+  DownloadIcon,
+  LinkIcon,
+} from '@chakra-ui/icons';
 
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
 import { setBackgroundPadding, setLineNumbers } from '@/stores/reducers/editor';
@@ -11,7 +29,7 @@ import { BACKGROUND_PADDING_OPTIONS } from './constants';
 
 const MotionBox = motion(Box);
 
-const EditorControls: FC<IEditorControlsProps> = () => {
+const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
   const dispatch = useDispatch();
   const hasLineNumbers = useSelector(selectLineNumbers);
 
@@ -74,6 +92,59 @@ const EditorControls: FC<IEditorControlsProps> = () => {
             </Button>
           ))}
         </Flex>
+      </Box>
+      <Box ml="auto" h="100%">
+        <Menu placement="top-start">
+          <MenuButton
+            as={Button}
+            h="100%"
+            bg="gray.600"
+            color="white"
+            _hover={{ bg: 'gray.500' }}
+            _active={{ bg: 'gray.500' }}
+          >
+            Export <ChevronUpIcon />
+          </MenuButton>
+          <MenuList bg="gray.600" p={4}>
+            <MenuItem
+              icon={<DownloadIcon />}
+              bg="gray.600"
+              _hover={{ bg: 'gray.500' }}
+              fontSize="md"
+              onClick={onExportCallback}
+            >
+              Image PNG
+            </MenuItem>
+            <MenuItem
+              icon={<DownloadIcon />}
+              bg="gray.600"
+              _hover={{ bg: 'gray.500' }}
+              fontSize="md"
+              onClick={onExportCallback}
+            >
+              Image JPG
+            </MenuItem>
+            <MenuItem
+              icon={<CopyIcon />}
+              bg="gray.600"
+              _hover={{ bg: 'gray.500' }}
+              fontSize="md"
+              onClick={onExportCallback}
+            >
+              Copy Image
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem
+              icon={<LinkIcon />}
+              bg="gray.600"
+              _hover={{ bg: 'gray.500' }}
+              fontSize="md"
+              onClick={onExportCallback}
+            >
+              Copy Imgur URL
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Box>
     </Flex>
   );
