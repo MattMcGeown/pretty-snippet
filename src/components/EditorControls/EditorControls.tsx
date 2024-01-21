@@ -1,14 +1,18 @@
-import { useState, type FC } from 'react';
+import type { FC } from 'react';
 import { Box, Checkbox, Flex, FormLabel } from '@chakra-ui/react';
 
 import { motion } from 'framer-motion';
 
+import { useDispatch, useSelector } from 'react-redux';
 import type { IEditorControlsProps } from './types';
+import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
+import { setLineNumbers } from '@/stores/reducers/editor';
 
 const MotionBox = motion(Box);
 
 const EditorControls: FC<IEditorControlsProps> = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
+  const hasLineNumbers = useSelector(selectLineNumbers);
 
   return (
     <Flex
@@ -25,11 +29,13 @@ const EditorControls: FC<IEditorControlsProps> = () => {
         <Checkbox
           name="lineNumbers"
           variant="pill-hidden"
-          isChecked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
+          isChecked={hasLineNumbers}
+          onChange={() => {
+            dispatch(setLineNumbers(!hasLineNumbers));
+          }}
         >
           <Box
-            bg={isChecked ? 'purple.700' : 'gray.600'}
+            bg={hasLineNumbers ? 'purple.700' : 'gray.600'}
             transition="background-color ease-in-out 200ms"
             w={24}
             py={2}
@@ -41,7 +47,7 @@ const EditorControls: FC<IEditorControlsProps> = () => {
               borderRadius="full"
               bg="white"
               initial={{ x: 6 }}
-              animate={{ x: isChecked ? 30 : 6 }}
+              animate={{ x: hasLineNumbers ? 30 : 6 }}
               transition={{ duration: 0.3 }}
             />
           </Box>
