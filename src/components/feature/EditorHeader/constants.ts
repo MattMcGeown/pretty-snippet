@@ -1,1 +1,1 @@
-export const EDITOR_DEFAULT_TITLE = 'Untitled-1';
+export const EDITOR_DEFAULT_TITLE = 'Untitled-1.tsx';
