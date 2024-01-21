@@ -19,6 +19,7 @@ const Editor: FC<IEditorProps> = () => {
       w="90%"
       mx="auto"
       background="linear-gradient(to right top, #0a8de1, #2b83f4, #6372fe, #9a57fc, #ce12eb)"
+      rounded="xl"
       initial={{ padding: theme.space[backgroundPadding] }}
       animate={{ padding: theme.space[backgroundPadding] }}
       transition={{ duration: 0.3 }}
