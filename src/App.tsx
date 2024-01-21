@@ -1,6 +1,7 @@
 import { Box, Container, Heading } from '@chakra-ui/react';
 
 import { Editor } from '@/components/Editor';
+import { EditorControls } from '@/components/EditorControls';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           Pretty Snippet
         </Heading>
         <Editor />
+        <EditorControls />
       </Container>
     </Box>
   );
