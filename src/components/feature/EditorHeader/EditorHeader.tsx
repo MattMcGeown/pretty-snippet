@@ -1,28 +1,35 @@
 import { useCallback, useRef, useState, type FC } from 'react';
 import { Box, Flex, Image, Input } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
 
 import logo from '@/assets/react.svg';
+import { setTitle } from '@/stores/reducers/editor';
 
 import type { IEditorHeaderProps } from './types';
 import { EDITOR_DEFAULT_TITLE } from './constants';
 
 const EditorHeader: FC<IEditorHeaderProps> = () => {
-  const [title, setTitle] = useState<string>(EDITOR_DEFAULT_TITLE);
+  const dispatch = useDispatch();
+  const [inputTitle, setInputTitle] = useState<string>(EDITOR_DEFAULT_TITLE);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleInputOnChange = (input: string) => {
-    setTitle(input);
+    setInputTitle(input);
   };
 
   const handleInputOnFocus = useCallback(() => {
     if (inputRef.current && inputRef.current.value === EDITOR_DEFAULT_TITLE) {
-      setTitle('');
+      setInputTitle('');
     }
   }, [inputRef]);
 
   const handleInputOnBlur = useCallback(() => {
-    if (inputRef.current && !inputRef.current.value) {
-      setTitle(EDITOR_DEFAULT_TITLE);
+    if (inputRef.current) {
+      if (!inputRef.current.value) {
+        setInputTitle(EDITOR_DEFAULT_TITLE);
+      } else {
+        dispatch(setTitle(inputRef.current.value));
+      }
     }
   }, [inputRef]);
 
@@ -40,7 +47,7 @@ const EditorHeader: FC<IEditorHeaderProps> = () => {
       <Box>
         <Input
           type="text"
-          value={title}
+          value={inputTitle}
           maxLength={60}
           spellCheck={false}
           onChange={(e) => handleInputOnChange(e.target.value)}
