@@ -5,8 +5,15 @@ import { EditorControls } from '@/components/EditorControls';
 
 function App() {
   return (
-    <Box as="main">
-      <Container h="100dvh" maxW={{ base: '80vw', md: '60vw', xl: '40vw' }}>
+    <Box as="main" h="100dvh">
+      <Container
+        h="100%"
+        maxW={{ base: '80vw', md: '60vw', xl: '40vw' }}
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+        gap={10}
+      >
         <Heading as="h1" textAlign="center">
           Pretty Snippet
         </Heading>

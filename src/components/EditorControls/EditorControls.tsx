@@ -16,7 +16,6 @@ const EditorControls: FC<IEditorControlsProps> = () => {
 
   return (
     <Flex
-      mt={10}
       bg="#282c34"
       p={8}
       borderRadius="xl"
