@@ -1,14 +1,17 @@
 import { Box, Container, Heading } from '@chakra-ui/react';
-
-import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useCallback, useRef } from 'react';
 import { toPng } from 'html-to-image';
+
 import { Editor } from '@/components/feature/Editor';
 import { EditorControls } from '@/components/feature/EditorControls';
+import { selectTitle } from '@/stores/reducers/editor/editor.selectors';
 
 function App() {
+  const editorTitle = useSelector(selectTitle);
   const editorWrapperRef = useRef<HTMLDivElement>(null);
 
-  const handleExport = () => {
+  const handleExport = useCallback(() => {
     if (editorWrapperRef.current === null) {
       return;
     }
@@ -20,7 +23,7 @@ function App() {
         downloadLink.href = dataUrl;
 
         // Set the filename for the download
-        downloadLink.download = 'image.png';
+        downloadLink.download = `ps_${editorTitle}.png`;
 
         // Append the anchor to the body (required in some browsers)
         document.body.appendChild(downloadLink);
@@ -31,10 +34,11 @@ function App() {
         // Remove the anchor from the body
         document.body.removeChild(downloadLink);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((err: any) => {
+        // eslint-disable-next-line no-console
+        console.error(err);
       });
-  };
+  }, [editorTitle]);
 
   return (
     <Box as="main" h="100dvh">
