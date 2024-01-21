@@ -1,0 +1,1 @@
+export const BACKGROUND_PADDING_OPTIONS = [8, 12, 16];

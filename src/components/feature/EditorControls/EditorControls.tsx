@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import { Box, Checkbox, Flex, FormLabel } from '@chakra-ui/react';
+import { Box, Button, Checkbox, Flex, FormLabel, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
 import { setBackgroundPadding, setLineNumbers } from '@/stores/reducers/editor';
-import { PSlider } from '@/components/ui/PSlider';
 
 import type { IEditorControlsProps } from './types';
+import { BACKGROUND_PADDING_OPTIONS } from './constants';
 
 const MotionBox = motion(Box);
 
@@ -15,7 +15,7 @@ const EditorControls: FC<IEditorControlsProps> = () => {
   const dispatch = useDispatch();
   const hasLineNumbers = useSelector(selectLineNumbers);
 
-  const handleBackgroundPaddingSlider = (value: number) => {
+  const handleBackgroundPaddingSize = (value: number) => {
     dispatch(setBackgroundPadding(value));
   };
 
@@ -27,7 +27,6 @@ const EditorControls: FC<IEditorControlsProps> = () => {
       borderWidth={1}
       borderStyle="solid"
       borderColor="rgba(255, 255, 255, 0.3)"
-      flexDir="column"
       gap={8}
     >
       <Flex flexDir="column">
@@ -60,16 +59,21 @@ const EditorControls: FC<IEditorControlsProps> = () => {
         </Checkbox>
       </Flex>
       <Box>
-        <FormLabel htmlFor="backgroundPaddingSlider">
-          Background Padding Size
-        </FormLabel>
-        <PSlider
-          name="backgroundPaddingSlider"
-          defaultValue={8}
-          min={0}
-          max={16}
-          onChangeCallback={(value) => handleBackgroundPaddingSlider(value)}
-        />
+        <Text>Padding Size</Text>
+        <Flex gap={4} mt={4}>
+          {BACKGROUND_PADDING_OPTIONS.map((option, idx) => (
+            <Button
+              key={idx}
+              rounded="full"
+              bg="gray.600"
+              color="white"
+              _hover={{ bg: 'gray.500' }}
+              onClick={() => handleBackgroundPaddingSize(option)}
+            >
+              {option}
+            </Button>
+          ))}
+        </Flex>
       </Box>
     </Flex>
   );
