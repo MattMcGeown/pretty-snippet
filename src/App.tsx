@@ -1,15 +1,16 @@
 import { Box, Container, Heading } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useCallback, useRef } from 'react';
-import { toJpeg, toPng } from 'html-to-image';
 
 import { Editor } from '@/components/feature/Editor';
 import type { ExportAsProps } from '@/components/feature/EditorControls';
 import { EditorControls } from '@/components/feature/EditorControls';
 import { selectTitle } from '@/stores/reducers/editor/editor.selectors';
+import { useExportImageAs } from '@/hooks/exportImage.hooks';
 
 function App() {
   const editorTitle = useSelector(selectTitle);
+  const { copyToClipboard, exportAsPng, exportAsJpg } = useExportImageAs();
   const editorWrapperRef = useRef<HTMLDivElement>(null);
 
   const handleExport = useCallback(
@@ -20,53 +21,21 @@ function App() {
 
       switch (type) {
         case 'png':
-          toPng(editorWrapperRef.current, { cacheBust: true })
-            .then((dataUrl) => {
-              // Create a temporary anchor element
-              const downloadLink = document.createElement('a');
-              downloadLink.href = dataUrl;
-
-              // Set the filename for the download
-              downloadLink.download = `ps_${editorTitle}.png`;
-
-              // Append the anchor to the body (required in some browsers)
-              document.body.appendChild(downloadLink);
-
-              // Simulate a click on the anchor to trigger the download
-              downloadLink.click();
-
-              // Remove the anchor from the body
-              document.body.removeChild(downloadLink);
-            })
-            .catch((err: any) => {
-              // eslint-disable-next-line no-console
-              console.error(err);
-            });
+          exportAsPng({
+            element: editorWrapperRef.current,
+            fileName: editorTitle,
+          });
           break;
         case 'jpg':
-          toJpeg(editorWrapperRef.current, { cacheBust: true })
-            .then((dataUrl) => {
-              // Create a temporary anchor element
-              const downloadLink = document.createElement('a');
-              downloadLink.href = dataUrl;
-
-              // Set the filename for the download
-              downloadLink.download = `ps_${editorTitle}.jpg`;
-
-              // Append the anchor to the body (required in some browsers)
-              document.body.appendChild(downloadLink);
-
-              // Simulate a click on the anchor to trigger the download
-              downloadLink.click();
-
-              // Remove the anchor from the body
-              document.body.removeChild(downloadLink);
-            })
-            .catch((err: any) => {
-              // eslint-disable-next-line no-console
-              console.error(err);
-            });
+          exportAsJpg({
+            element: editorWrapperRef.current,
+            fileName: editorTitle,
+          });
           break;
+        case 'clipboard':
+          copyToClipboard({ element: editorWrapperRef.current });
+          break;
+        // TODO: Surface toast
         default:
       }
     },
