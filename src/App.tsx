@@ -56,10 +56,8 @@ function App() {
         <Heading as="h1" textAlign="center">
           Pretty Snippet
         </Heading>
-        <Box ref={editorWrapperRef} w="full">
-          <Box w="80%" mx="auto">
-            <Editor />
-          </Box>
+        <Box w="full" px="5em">
+          <Editor forwardedRef={editorWrapperRef} />
         </Box>
         <EditorControls onExportCallback={(type) => handleExport(type)} />
       </Container>

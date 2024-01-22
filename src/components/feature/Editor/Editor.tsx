@@ -1,4 +1,5 @@
-import type { FC } from 'react';
+import type { ForwardRefRenderFunction } from 'react';
+import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Box, useTheme } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -10,7 +11,9 @@ import { selectBackgroundPadding } from '@/stores/reducers/editor/editor.selecto
 import type { IEditorProps } from './types';
 
 const MotionBox = motion(Box);
-const Editor: FC<IEditorProps> = () => {
+const Editor: ForwardRefRenderFunction<HTMLDivElement, IEditorProps> = ({
+  forwardedRef,
+}) => {
   const backgroundPadding = useSelector(selectBackgroundPadding);
   const theme = useTheme();
 
@@ -21,6 +24,7 @@ const Editor: FC<IEditorProps> = () => {
       initial={{ padding: theme.space[backgroundPadding] }}
       animate={{ padding: theme.space[backgroundPadding] }}
       transition={{ duration: 0.3 }}
+      ref={forwardedRef}
     >
       <EditorHeader />
       <EditorBody />
@@ -28,6 +32,6 @@ const Editor: FC<IEditorProps> = () => {
   );
 };
 
-export default Editor;
+export default forwardRef(Editor);
 
 Editor.displayName = 'Editor';
