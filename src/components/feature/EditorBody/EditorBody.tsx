@@ -11,7 +11,7 @@ import type { IEditorBodyProps } from './types';
 const EditorBody: FC<IEditorBodyProps> = () => {
   const lineNumbers = useSelector(selectLineNumbers);
   const [editorValue, setEditorValue] = useState(
-    'const myTestFunc = (myStr: string) => {return myStr};'
+    'const myTestFunc = (myStr: string) => {\n  return myStr\n};'
   );
 
   const handleOnChange = (editorInputValue: string) => {
