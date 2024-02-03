@@ -7,19 +7,13 @@ import {
   FormLabel,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
   Text,
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import {
-  ChevronUpIcon,
-  CopyIcon,
-  DownloadIcon,
-  LinkIcon,
-} from '@chakra-ui/icons';
+import { ChevronUpIcon, CopyIcon, DownloadIcon } from '@chakra-ui/icons';
 
 import { selectLineNumbers } from '@/stores/reducers/editor/editor.selectors';
 import { setBackgroundPadding, setLineNumbers } from '@/stores/reducers/editor';
@@ -132,16 +126,6 @@ const EditorControls: FC<IEditorControlsProps> = ({ onExportCallback }) => {
               onClick={() => onExportCallback('clipboard')}
             >
               Copy Image
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem
-              icon={<LinkIcon />}
-              bg="gray.600"
-              _hover={{ bg: 'gray.500' }}
-              fontSize="md"
-              onClick={() => onExportCallback('imgur')}
-            >
-              Copy Imgur URL
             </MenuItem>
           </MenuList>
         </Menu>
