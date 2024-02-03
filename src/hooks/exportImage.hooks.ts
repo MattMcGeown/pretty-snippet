@@ -1,8 +1,11 @@
 import { toBlob, toJpeg, toPng } from 'html-to-image';
+import { useToast } from '@chakra-ui/react';
 
 import { ExportImageAsProps } from './types';
 
 export const useExportImageAs = () => {
+  const toast = useToast();
+
   const copyToClipboard = async ({ element }: ExportImageAsProps) => {
     if (element) {
       try {
@@ -11,11 +14,18 @@ export const useExportImageAs = () => {
           const item = new ClipboardItem({ 'image/png': blob });
 
           navigator.clipboard.write([item]);
+
+          toast({
+            title: 'Image copied to clipboard.',
+            status: 'success',
+          });
         }
-      } catch (error) {
-        // TODO: Surface toast
-        // eslint-disable-next-line no-console
-        console.error('Error generating image or copying to clipboard:', error);
+      } catch (err: any) {
+        toast({
+          title: 'Request Error.',
+          description: `Please try again or contact a system admin. Error: ${err}`,
+          status: 'error',
+        });
       }
     }
   };
@@ -31,9 +41,11 @@ export const useExportImageAs = () => {
         document.body.removeChild(downloadLink);
       })
       .catch((err: any) => {
-        // TODO: Surface toast
-        // eslint-disable-next-line no-console
-        console.error(err);
+        toast({
+          title: 'Request Error.',
+          description: `Please try again or contact a system admin. Error: ${err}`,
+          status: 'error',
+        });
       });
   };
 
@@ -48,9 +60,11 @@ export const useExportImageAs = () => {
         document.body.removeChild(downloadLink);
       })
       .catch((err: any) => {
-        // TODO: Surface toast
-        // eslint-disable-next-line no-console
-        console.error(err);
+        toast({
+          title: 'Request Error.',
+          description: `Please try again or contact a system admin. Error: ${err}`,
+          status: 'error',
+        });
       });
   };
 

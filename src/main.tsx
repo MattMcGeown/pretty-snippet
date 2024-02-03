@@ -12,7 +12,16 @@ import App from './App.tsx';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider theme={defaultTheme}>
+      <ChakraProvider
+        theme={defaultTheme}
+        toastOptions={{
+          defaultOptions: {
+            containerStyle: { fontSize: 'xl' },
+            duration: 5000,
+            isClosable: true,
+          },
+        }}
+      >
         <App />
       </ChakraProvider>
     </Provider>
