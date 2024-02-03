@@ -57,7 +57,10 @@ function App() {
           Pretty Snippet
         </Heading>
         <Box w="full" px="5em">
-          <Editor forwardedRef={editorWrapperRef} />
+          <Editor
+            ref={editorWrapperRef}
+            background="linear-gradient(to right top, #0a8de1, #2b83f4, #6372fe, #9a57fc, #ce12eb)"
+          />
         </Box>
         <EditorControls onExportCallback={(type) => handleExport(type)} />
       </Container>

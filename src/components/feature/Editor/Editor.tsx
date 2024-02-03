@@ -11,20 +11,21 @@ import { selectBackgroundPadding } from '@/stores/reducers/editor/editor.selecto
 import type { IEditorProps } from './types';
 
 const MotionBox = motion(Box);
-const Editor: ForwardRefRenderFunction<HTMLDivElement, IEditorProps> = ({
-  forwardedRef,
-}) => {
+const Editor: ForwardRefRenderFunction<HTMLDivElement, IEditorProps> = (
+  { background },
+  ref
+) => {
   const backgroundPadding = useSelector(selectBackgroundPadding);
   const theme = useTheme();
 
   return (
     <MotionBox
-      background="linear-gradient(to right top, #0a8de1, #2b83f4, #6372fe, #9a57fc, #ce12eb)"
+      background={background}
       rounded="xl"
       initial={{ padding: theme.space[backgroundPadding] }}
       animate={{ padding: theme.space[backgroundPadding] }}
       transition={{ duration: 0.3 }}
-      ref={forwardedRef}
+      ref={ref}
     >
       <EditorHeader />
       <EditorBody />
