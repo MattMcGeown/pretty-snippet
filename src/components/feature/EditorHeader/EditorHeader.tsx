@@ -40,7 +40,7 @@ const EditorHeader: FC<IEditorHeaderProps> = () => {
       alignItems="center"
       background="#282c34"
       padding={4}
-      borderTopRadius="xl"
+      borderTopRadius="3xl"
       borderBottom="1px solid rgba(0, 0, 0, 0.1)"
     >
       <Image src={logo} alt="Pretty Snippet Logo" aspectRatio="16/9" w={10} />

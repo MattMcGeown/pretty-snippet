@@ -21,7 +21,6 @@ const Editor: ForwardRefRenderFunction<HTMLDivElement, IEditorProps> = (
   return (
     <MotionBox
       background={background}
-      rounded="xl"
       initial={{ padding: theme.space[backgroundPadding] }}
       animate={{ padding: theme.space[backgroundPadding] }}
       transition={{ duration: 0.3 }}
